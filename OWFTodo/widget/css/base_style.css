@@ -1,0 +1,21 @@
+body {
+    height: 98%;
+    width: 99%;
+    position: absolute;
+    overflow-wrap: break-word;
+}
+
+.body-overflow {
+    overflow-y: auto;
+}
+
+.container-fluid,
+.row-fluid {
+    height: inherit;
+}
+
+a.disabled {
+    color: gray !important;
+    pointer-events: none;
+    cursor: not-allowed;
+}

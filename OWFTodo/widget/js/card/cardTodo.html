@@ -1,0 +1,14 @@
+<div id="{{#if prefix}}{{prefix}}{{else}}todo{{/if}}-{{id}}" 
+    class="cardTodo cardTodo-{{class}} cardTodo-{{state}}" 
+    data-id="{{id}}">
+    <input type="checkbox" 
+        id="cb{{#if prefix}}{{prefix}}{{else}}todo{{/if}}-{{cardId}}"
+        class="cardTodo-input"
+        {{#ifCond state "Complete"}} checked{{/ifCond}}>
+    <label
+        id="lbText{{#if prefix}}{{prefix}}{{else}}todo{{/if}}-{{cardId}}"
+        class="cardTodo-text">{{#if category}}{{category}} - {{/if}}{{text}}</label>
+    <label 
+        id="lbDue{{#if prefix}}{{prefix}}{{else}}todo{{/if}}-{{cardId}}"
+        class="cardTodo-date">{{due}} <i class="material-icons cardTodo-icon">edit</i></label>
+</div>

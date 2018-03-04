@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<title>OWF Todo</title>
+
+<head>
+    <meta charset="ISO-8859-1">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+    <!-- meta http-equiv="cache-control" content="max-age=360" /-->
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- add css for core items -->
+    <link rel="stylesheet" type="text/css" href="vendor/css/dragAndDrop.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/fonts/material-icons.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/fonts/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/alpaca.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/jquery-ui.structure.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/jquery-ui.theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/jquery.smartmenus.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/bootstrap-multiselect.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/bootstrap-datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/jquery.spectrum.colorpicker.css" />
+
+    <!-- dynamic loading of scripts for cache busting -->
+    <script type="text/javascript">
+        var loadCSS = function (refCSS) {
+            //document.writeln('<link rel="stylesheet" href="' + refCSS + '">');
+            var eCSS = document.createElement("link");
+            eCSS.rel = "stylesheet";
+            eCSS.href = refCSS;
+
+            //document.getElementsByTagName('head')[0].appendChild(eCSS);
+            document.head.appendChild(eCSS);
+        }
+        var loadJS = function (refJS, data) {
+            //document.writeln('<script src="' + refJS + '"><\/script>');
+            var eJS = document.createElement("script");
+            eJS.type = 'text/javascript';
+            eJS.src = refJS;
+            eJS.async = false;
+
+            // loop throught the data array and update the script tag
+            // cannot update the object directly; have to use setAttribute
+            if (data) {
+                data.forEach(function (item) {
+                    for (var prop in item) {
+                        eJS.setAttribute(prop, item[prop]);
+                    };
+                });
+            }
+
+            //document.getElementsByTagName('head')[0].appendChild(eJS);
+            document.head.appendChild(eJS);
+        }
+    </script>
+
+    <!-- add script for core items -->
+    <!--script type="text/javascript" src="vendor/js/es5-shim.min.js"></script-->
+    <script type="text/javascript" src="vendor/js/es6-shim.min.js"></script>
+    <!--script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script-->
+    <script type="text/javascript" src="vendor/js/fontawesome-all.min.js"></script>
+    <script type="text/javascript" src="vendor/js/owf-widget.min.js"></script>
+    <script type="text/javascript" src="vendor/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="vendor/js/handlebars-4.0.11.min.js"></script>
+    <script type="text/javascript" src="vendor/js/underscore-1.8.3.min.js"></script>
+    <script type="text/javascript" src="vendor/js/lodash-4.17.4.min.js"></script>
+    <script type="text/javascript" src="vendor/js/bootstrap-3.3.7.min.js"></script>
+    <script type="text/javascript" src="vendor/js/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="vendor/js/alpaca.min.js"></script>
+    <script type="text/javascript" src="vendor/js/backbone.min.js"></script>
+    <script type="text/javascript" src="vendor/js/date.format-1.2.3.js"></script>
+    <script type="text/javascript" src="vendor/js/bootstrap/collapse.js"></script>
+    <script type="text/javascript" src="vendor/js/bootstrap/transition.js"></script>
+    <script type="text/javascript" src="vendor/js/bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="vendor/js/bootstrap-notify.min.js"></script>
+    <script type="text/javascript" src="vendor/js/bootstrap-tokenfield.min.js"></script>
+    <script type="text/javascript" src="vendor/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="vendor/js/bloodhound.min.js"></script>
+    <script type="text/javascript" src="vendor/js/typeahead.bundle.min.js"></script>
+    <script type="text/javascript" src="vendor/js/jquery.smartmenus.js"></script>
+    <script type="text/javascript" src="vendor/js/jquery.smartmenus.bootstrap.js"></script>
+    <script type="text/javascript" src="vendor/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="vendor/js/jquery.maskedinput.min.js"></script>
+    <script type="text/javascript" src="vendor/js/jquery.price_format.min.js"></script>
+    <script type="text/javascript" src="vendor/js/jquery.spectrum.colorpicker.js"></script>
+    <script type="text/javascript" src="vendor/js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="vendor/js/semantic.min.js"></script>
+
+    <!--script type="text/javascript" src="vendor/js/jquery.dataTables.js"></script-->
+    <!--script type="text/javascript" src="vendor/js/dataTables.bootstrap.js"></script-->
+    <!--script type="text/javascript" src="vendor/js/dataTables.rowOrder.js"></script-->
+    <script type="text/javascript" src="vendor/js/datatables.min.js"></script>
+    <script type="text/javascript" src="widget/js/utilities.js"></script>
+</head>
+
+<body class="claro">
+    <script type="text/javascript">
+        var ver = "ver=" + (new Date()).getTime();
+
+        // add css for widget specific
+        loadCSS("widget/css/base_style.css?" + ver);
+        loadCSS("widget/css/widget_style.css?" + ver);
+
+        //The location is assumed to be at /<context>/js/eventing/rpc_relay.uncompressed.html if it is not set
+        OWF.relayFile = "vendor/js/eventing/rpc_relay.uncompressed.html";
+        owfdojo.config.dojoBlankHtmlUrl = 'vendor/js/dojo-1.5.0-windowname-only/dojo/resources/blank.html';
+
+        // add vendor javascripts
+        if (OWF.ready(function () {
+                loadJS("vendor/js/require-2.3.5.min.js", [{
+                    "data-main": "./app"
+                }]);
+            }));
+    </script>
+
+    <!-- Navbar -->
+    <div id="navbar" class="navbar navbar-default" role="navigation">
+        <div id="navbar" class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">WidgetBase</a>
+        </div>
+        <div class="navbar-collapse collapse">
+
+            <!-- Left nav -->
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">Todo
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#" id="mnuTodoAdd">Add</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View(s)
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" id="mnuTodoViewAll" class="disabled">All</a>
+                                </li>
+                                <li>
+                                    <a href="#" id="mnuTodoViewOpen" class="disabled">Open</a>
+                                </li>
+                                <li>
+                                    <a href="#" id="mnuTodoViewCompleted" class="disabled">Completed</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Right nav -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" class="active" id="help">Help
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#" id="mnuAbout">About</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="mnuReset">Reset</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+
+    <container id="container">
+        <div id="todoPopup" style="font-size: 12px; line-height: 1;"></div>
+        <div class="container-fluid">
+            <div class="row-content row margin-zero">
+                <div id="dataDiv" class="column-top col-xs-12 margin-zero"></div>
+                <div id="infoDiv" class="column-bottom col-xs-12 margin-zero small"></div>
+            </div>
+        </div>
+    </container>
+
+    <div id="waitingImage" class="waitingImage">
+        <image id="waitingImageIcon" src="widget/images/loading_blue.gif" width="50px" height="50px"></image>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<div id="{{id}}" class="popup">
+    <div class="popup-content">
+        {{#if header}}
+        <header class="popup-container popup-header">
+            <span class="popup-close">
+                <h2>&times;</h2>
+            </span>
+            <h2>{{header}}</h2>
+        </header>
+        {{/if}}
+        <div class="popup-container popup-main">
+            <div id="popoup-form"></div>
+        </div>
+        {{#if header}}
+        <footer class="popup-container popup-footer">
+            <p>{{footer}}</p>
+        </footer>
+        {{/if}}
+    </div>
+</div>

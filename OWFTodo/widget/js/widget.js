@@ -490,7 +490,7 @@ define([], function () {
             "Got an error setting preferences! Status Code: " + status +
             ", Error message: " + error);
 
-            self.restoreSettings();
+        self.restoreSettings();
     }
 
     Widget.prototype.retrievePreferences = function () {
@@ -939,9 +939,44 @@ define([], function () {
         var self = this;
 
         self._popup.create({
-            "id": "popupTodoEdit",
-            "header": "Add new item...",
-            "footer": undefined,
+            "popup": {
+                "id": "popupTodoEdit",
+                "header": "Add new item...",
+                "footer": undefined,
+            },
+            "form": {
+                "text": "test",
+                "state": "Active",
+                "schedule": "Hourly",
+                "scheduleHourly": {
+                    "hourStart": 0,
+                    "hourStop": 12
+                },
+                "ArrayOfFields": [{
+                        "scheduleInArray": "Daily",
+                        "scheduleInArrayDaily": [
+                            "Sunday",
+                            "Monday",
+                            "Thursday"
+                        ]
+                    },
+                    {
+                        "scheduleInArray": "Monthly",
+                        "scheduleInArrayMonthly": [
+                            "First Day of Month",
+                            "First of Odd Month"
+                        ]
+                    },
+                    {
+                        "scheduleInArray": "Weekly",
+                        "scheduleInArrayWeekly": [
+                            "First Week",
+                            "Fourth Week"
+                        ]
+                    }
+                ],
+                "duedate": "19/02/2018 10:44:36"
+            }
         }, {
             element: "todoPopup",
             callback: self.onPopupCallbackAdd.bind(self)
@@ -1001,12 +1036,15 @@ define([], function () {
             }
         } else {
             self._popup.create({
-                "id": "popupTodoEdit",
-                "header": "Edit item (#" + target[0].id + ")",
-                "footer": undefined,
+                "popup": {
+                    "id": "popupTodoEdit",
+                    "header": "Edit item (#" + target[0].id + ")",
+                    "footer": undefined,
+                },
+                "form": {}
             }, {
                 element: "todoPopup",
-                callback: self.onPopupCallbackAdd.bind(self)
+                callback: self.onPopupCallbackEdit.bind(self)
             });
         }
         /*

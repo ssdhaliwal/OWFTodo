@@ -64,45 +64,15 @@ define([], function () {
         var self = this;
 
         // initalize the object
-        self._data = data;
-        var html = self._template(data);
+        self._data = data.popup;
+        var html = self._template(self._data);
 
         // add to the document element
         $(html).appendTo($("#" + options.element));
 
         // create form and link it
         $("#popoup-form").alpaca({
-            "data": {
-                "text": "test",
-                "state": "Active",
-                "schedule": "Hourly",
-                "scheduleHourly": {
-                    "hourStart": 0,
-                    "hourStop": 12
-                },
-                "ArrayOfFields": [{
-                        "scheduleInArray": "Daily",
-                        "scheduleInArrayDaily": [
-                            "Monday",
-                            "Sunday",
-                            "Thursday"
-                        ]
-                    },
-                    {
-                        "scheduleInArray": "Monthly",
-                        "scheduleInArrayMonthly": "test"
-                    },
-                    {
-                        "scheduleInArray": "Weekly",
-                        "scheduleInArrayWeekly": "First Week"
-                    },
-                    {
-                        "scheduleInArray": "Monthly",
-                        "scheduleInArrayMonthly": "Feb"
-                    }
-                ],
-                "duedate": "19/02/2018 10:44:36"
-            },
+            "data": data.form,
             "schema": {
                 "title": "Todo Form",
                 "description": "Enter/Edit todo items...",
@@ -152,12 +122,32 @@ define([], function () {
                         "maxItems": 7
                     },
                     "scheduleWeekly": {
-                        "type": "string",
-                        "title": "Dependent Field (Weekly)"
+                        "type": "array",
+                        "items": {
+                            "title": "Dependent Field (Weekly)",
+                            "type": "string",
+                            "enum": ["Weekly", "First Week", "Second Week", "Third Week", "Fourth Week",
+                                "Fifth Week", "Last Week"
+                            ]
+                        },
+                        "minItems": 1,
+                        "maxItems": 5
                     },
                     "scheduleMonthly": {
-                        "type": "string",
-                        "title": "Dependent Field (Monthly)"
+                        "type": "array",
+                        "items": {
+                            "title": "Dependent Field (Monthly)",
+                            "type": "string",
+                            "enum": ["Monthly", "Quarterly",
+                                "First Day of Month", "First Day of Quarter",
+                                "First Day of Even Month", "First of Odd Month",
+                                "Last Day of Month", "Last Day of Quarter",
+                                "Last Day of Even Month", "Last of Odd Month",
+                                "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+                            ]
+                        },
+                        "minItems": 1,
+                        "maxItems": 5
                     },
                     "ArrayOfFields": {
                         "type": "array",
@@ -197,12 +187,32 @@ define([], function () {
                                     "maxItems": 7
                                 },
                                 "scheduleInArrayWeekly": {
-                                    "type": "string",
-                                    "title": "Dependent Field In Array (Weekly)"
+                                    "type": "array",
+                                    "items": {
+                                        "title": "Dependent Field (Weekly)",
+                                        "type": "string",
+                                        "enum": ["Weekly", "First Week", "Second Week", "Third Week", "Fourth Week",
+                                            "Fifth Week", "Last Week"
+                                        ]
+                                    },
+                                    "minItems": 1,
+                                    "maxItems": 5
                                 },
                                 "scheduleInArrayMonthly": {
-                                    "type": "string",
-                                    "title": "Dependent Field In Array (Monthly)"
+                                    "type": "array",
+                                    "items": {
+                                        "title": "Dependent Field (Monthly)",
+                                        "type": "string",
+                                        "enum": ["Monthly", "Quarterly",
+                                            "First Day of Month", "First Day of Quarter",
+                                            "First Day of Even Month", "First of Odd Month",
+                                            "Last Day of Month", "Last Day of Quarter",
+                                            "Last Day of Even Month", "Last of Odd Month",
+                                            "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+                                        ]
+                                    },
+                                    "minItems": 1,
+                                    "maxItems": 5
                                 }
                             },
                             "dependencies": {
@@ -261,7 +271,8 @@ define([], function () {
                             "Over-Due",
                             "Complete",
                             "Cancelled"
-                        ]
+                        ],
+                        "sort": false
                     },
                     "scheduleHourly": {
                         "dependencies": {
@@ -284,17 +295,30 @@ define([], function () {
                         "helper": "Select days to schedule?",
                         "type": "select",
                         "size": 5,
-                        "noneLabel": "No days selected?"
+                        "noneLabel": "No days selected?",
+                        "sort": false
                     },
                     "scheduleWeekly": {
                         "dependencies": {
                             "schedule": "Weekly"
-                        }
+                        },
+                        "label": "Weekly Schedule",
+                        "helper": "Select weeks to schedule?",
+                        "type": "select",
+                        "size": 5,
+                        "noneLabel": "No weeks selected?",
+                        "sort": false
                     },
                     "scheduleMonthly": {
                         "dependencies": {
                             "schedule": "Monthly"
-                        }
+                        },
+                        "label": "Monthly Schedule",
+                        "helper": "Select months to schedule?",
+                        "type": "select",
+                        "size": 5,
+                        "noneLabel": "No months selected?",
+                        "sort": false
                     },
                     "ArrayOfFields": {
                         "fields": {
@@ -324,17 +348,30 @@ define([], function () {
                                         "helper": "Select days to schedule?",
                                         "type": "select",
                                         "size": 5,
-                                        "noneLabel": "No days selected?"
+                                        "noneLabel": "No days selected?",
+                                        "sort": false
                                     },
                                     "scheduleInArrayWeekly": {
                                         "dependencies": {
                                             "scheduleInArray": "Weekly"
-                                        }
+                                        },
+                                        "label": "Weekly Schedule",
+                                        "helper": "Select weeks to schedule?",
+                                        "type": "select",
+                                        "size": 5,
+                                        "noneLabel": "No weeks selected?",
+                                        "sort": false
                                     },
                                     "scheduleInArrayMonthly": {
                                         "dependencies": {
                                             "scheduleInArray": "Monthly"
-                                        }
+                                        },
+                                        "label": "Monthly Schedule",
+                                        "helper": "Select months to schedule?",
+                                        "type": "select",
+                                        "size": 5,
+                                        "noneLabel": "No months selected?",
+                                        "sort": false
                                     }
                                 }
                             }
@@ -375,7 +412,7 @@ define([], function () {
         $(".popup-close")[0].addEventListener("click", self.onClick.bind(self));
 
         // show the popup
-        $("#" + data.id)[0].style.display = "block";
+        $("#" + self._data.id)[0].style.display = "block";
     }
 
     Popup.prototype.onClick = function () {
